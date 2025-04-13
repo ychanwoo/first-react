@@ -1,22 +1,21 @@
 import { useState, useRef } from 'react'
 import './App.css';
-import EmailInput from './component/EmailInput';
-import Input from './component/input';
 import useInput from './hooks/useInput';
 import useEmailInput from './hooks/useEmailInput';
+import EmailInput from './component/EmailInput';
+import Input from './component/input';
 import { useNavigate } from 'react-router-dom';
-function Signup() {
-  const [nickname, nicknameRef, onChangeNickname] = useInput('');
-  const [phone, phoneRef, onChangePhone] = useInput('');
+
+function Login() {
   const [password, passwordRef, onChangePassword] = useInput('');
   const [id, domain, idRef, onChangeEmail, onChangeDomain] = useEmailInput('');
   const counterRef = useRef(0);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-
+  
   const fullDomain = `${id}@${domain}`;
 
-  const onSignup = () => { //batch 처리
+  const onLogin = () => { //batch 처리
     counterRef.current += 1;
 
     if(!id?.trim()){
@@ -33,8 +32,8 @@ function Signup() {
     console.log(fullDomain, password); // 서버로 보내서 로그인
   };
 
-  const onLogin = () => {
-    navigate("/login");
+  const onSignup = () => {
+    navigate("/signup");
   }
 
   return (
@@ -42,13 +41,11 @@ function Signup() {
       <div style={{textAlign:'left'}} className='login-form'>
         <EmailInput id={id} errors={errors} domain={domain} idRef={idRef} onChangeEmail={onChangeEmail} onChangeDomain={onChangeDomain} />
         <Input id="password" type="password" text="비밀번호" ref={passwordRef} onChange={onChangePassword} value={password} error={errors.passwordError} />
-        <Input id="nickname" text="닉네임" ref={nicknameRef} onChange={onChangeNickname} value={nickname} error={errors.nicknameError} />
-        <Input id="phone" type="tel" text="전화번호" ref={phoneRef} onChange={onChangePhone} value={phone} error={errors.phoneError} />
-        <button onClick={onSignup}>회원가입</button>
+        <button onClick={onLogin}>로그인</button>
       </div>
-      <button onClick={onLogin}>로그인</button>
+      <button onClick={onSignup}>회원가입</button>
     </>
-  )
+  );
 }
 
-export default Signup
+export default Login;
