@@ -4,7 +4,7 @@ import EmailInput from './component/EmailInput';
 import Input from './component/input';
 import useInput from './hooks/useInput';
 import useEmailInput from './hooks/useEmailInput';
-import { useNavigate } from 'react-router-dom';
+
 function Signup() {
   const [nickname, nicknameRef, onChangeNickname] = useInput('');
   const [phone, phoneRef, onChangePhone] = useInput('');
@@ -12,7 +12,6 @@ function Signup() {
   const [id, domain, idRef, onChangeEmail, onChangeDomain] = useEmailInput('');
   const counterRef = useRef(0);
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const fullDomain = `${id}@${domain}`;
 
@@ -34,7 +33,8 @@ function Signup() {
   };
 
   const onLogin = () => {
-    navigate("/login");
+    history.pushState(null, "", "/login");
+    dispatchEvent(new PopStateEvent("popstate"));
   }
 
   return (
