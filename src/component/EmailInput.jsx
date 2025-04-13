@@ -1,6 +1,7 @@
-// import { useState, useRef } from 'react'
 
-export default function Email({id, errors, domain, idRef, onChangeEmail, onChangeDomain}){ //props라고 부름
+import { memo } from "react";
+
+function EmailInput({id, errors, domain, idRef, onChangeEmail, onChangeDomain}){ //props라고 부름
   const domains = ['naver.com', 'gmail.com', 'hanmail.com', 'kakao.com'];
 
   return (
@@ -18,3 +19,5 @@ export default function Email({id, errors, domain, idRef, onChangeEmail, onChang
     </div>
   );
 }
+
+export default memo(EmailInput);
