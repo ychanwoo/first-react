@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>카운터</title>
+</head>
+<body>
+  <div>
+    <h1 id="counter">카운터 : 0</h1>
+    <button id="button">+</button>
+  </div>
+
+  <script>
+    let count = 0;
+    const counterElement = document.getElementById('counter');
+    document.getElementById('button').addEventListener('click', increment);
+
+    function increment() {
+      count += 1;
+      counterElement.textContent= `카운터: ${count}`;  
+    }
+  </script>
+</body>
+</html>
