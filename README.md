@@ -1,17 +1,11 @@
-<<<<<<< HEAD
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
 # first-react
-- vite환경을 이용하여 login 페이지와 signup페이지 생성
->>>>>>> fbfe3a8c861ae15fd6aa3507aaaa28b85ad528bf
+
+이 프로젝트는 Vite 환경을 이용하여 로그인 페이지와 회원가입 페이지를 생성한 프로젝트입니다.
+
+## 기능
+- Vite 설정으로 React 사용
+- 로그인 페이지와 회원가입 페이지
+- 깔끔한 코드를 위한 ESLint 설정
+
+## ESLint 설정 확장
+프로덕션 애플리케이션을 개발하는 경우, TypeScript를 사용하고 타입 기반 lint 규칙을 활성화하는 것을 권장합니다. TypeScript와 [`typescript-eslint`](https://typescript-eslint.io)를 프로젝트에 통합하려면 [TS 템플릿](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts)을 확인하세요.
