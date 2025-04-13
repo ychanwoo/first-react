@@ -1,29 +1,13 @@
 import { useState, useRef } from 'react'
-import './App.css'
+import './App.css';
+import useInput from './hooks/useInput';
+import useEmailInput from './hooks/useEmailInput';
 
 function App() {
-  const [id, setId] = useState('');
-  const idRef = useRef(null); //초기값 -> {current:null} 
-  const passwordRef = useRef(null);
+  const [password, passwordRef, onChangePassword] = useInput('');
+  const [id, domain, idRef, onChangeEmail, onChangeDomain] = useEmailInput('');
   const counterRef = useRef(0);
-  const [domain, setDomain] = useState('naver.com') ;
-  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const domains = ['naver.com', 'gmail.com', 'hanmail.com', 'kakao.com'];
-
-  console.log('App', id);
-
-  const onChangeEmail = (e) =>{
-    setId(e.target.value);
-  };
-
-  const onChangeDomain = (e) =>{
-    setDomain(e.target.value);
-  };
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
 
   const fullDomain = `${id}@${domain}`;
 
@@ -47,28 +31,13 @@ function App() {
   return (
     <>
       <div style={{textAlign:'left'}} className='login-form'>
-        <div>
-          <label htmlFor="id" style={{display: 'inline-block', width:'80px'}}>아이디</label>
-          <input ref={(node) => {idRef.current = node}} type="text" id="id" value={id} onChange={onChangeEmail}/>
-          {domain === '' ? null : <span>@</span>} {/*domain이 빈 문자열이면 span태그 아니면 아무것도 보여주지말라*/}
-          <select value = {domain} onChange={onChangeDomain}>
-            {domains.map((d) => {
-              return <option key = {d} value={d}>{d}</option>
-            })}
-            <option value="">직접입력</option>
-          </select>
-          {errors.idError && <div style={{color: 'red'}}>{errors.idError}</div>}
-         </div>
-        <div>
-          <label htmlFor="password" style={{display: 'inline-block', width:'80px'}}>비밀번호</label>
-          <input ref={passwordRef} type="password" id="password" value = {password} onChange={onChangePassword}/>
-          {errors.passwordError && <div style={{color: 'red'}}>{errors.passwordError}</div>}
-        </div>
+        <EmailInput id={id} errors={errors} domain={domain} idRef={idRef} onChangeEmail={onChangeEmail} onChangeDomain={onChangeDomain} />
+        <Input id="password" type="password" text="비밀번호" ref={passwordRef} onChange={onChangePassword} value={password} error={errors.passwordError} />
         <button onClick={onLogin}>로그인</button>
       </div>
       <div>회원가입</div>
     </>
-  )
+  );
 }
 
 export default App

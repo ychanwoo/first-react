@@ -2,41 +2,17 @@ import { useState, useRef } from 'react'
 import './App.css';
 import EmailInput from './component/EmailInput';
 import Input from './component/input';
+import useInput from './hooks/useInput';
+import useEmailInput from './hooks/useEmailInput';
 
 function Signup() {
-  const [id, setId] = useState('');
-  const [domain, setDomain] = useState('naver.com');
-  const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [phone, setPhone] = useState('');
-  const [errors, setErrors] = useState({});
-  
-  const idRef = useRef(null); 
-  const passwordRef = useRef(null);
-  const nicknameRef = useRef(null);
-  const phoneRef = useRef(null);
+  const [nickname, nicknameRef, onChangeNickname] = useInput('');
+  const [phone, phoneRef, onChangePhone] = useInput('');
+  const [password, passwordRef, onChangePassword] = useInput('');
+  const [id, domain, idRef, onChangeEmail, onChangeDomain] = useEmailInput('');
   const counterRef = useRef(0);
+  const [errors, setErrors] = useState({});
 
-  const onChangeEmail = (e) =>{
-    setId(e.target.value);
-  };
-
-  const onChangeDomain = (e) =>{
-    setDomain(e.target.value);
-  };
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const onChangeNickname = (e) => {
-    setNickname(e.target.value);
-  }
-
-  const onChangePhone = (e) => {
-    setPhone(e.target.value);
-  };
-  
   const fullDomain = `${id}@${domain}`;
 
   const onLogin = () => { //batch 처리
